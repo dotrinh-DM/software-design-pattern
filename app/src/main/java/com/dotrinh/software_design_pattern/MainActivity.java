@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.dotrinh.software_design_pattern.creational_patterns.Singleton_Toast_1;
 import com.dotrinh.software_design_pattern.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,5 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //singleton
+        Singleton_Toast_1.getInstance().showLongToast(this, "Hello");
     }
 }
