@@ -5,21 +5,9 @@
 
 package com.dotrinh.software_design_pattern.behavioral_patterns.command;
 
-import static com.dotrinh.software_design_pattern.tools.LogUtil.LogI;
-
-public class MyField extends BaseCmdClass {
+public class MyField extends MyComponent {
 
     public MyField(String str) {
-        super.name = str;
-    }
-
-    @Override
-    public void undo() {
-        LogI("Đã undo");
-    }
-
-    @Override
-    public void redo() {
-        LogI("Đã redo");
+        super(str);
     }
 }

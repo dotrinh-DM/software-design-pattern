@@ -11,8 +11,8 @@ import java.util.Stack;
 public class CmdManager {
 
     private static CmdManager ourInstance = new CmdManager();
-    private Stack<BaseCmdClass> undoStack = new Stack<>();
-    private Stack<BaseCmdClass> redoStack = new Stack<>();
+    private Stack<iAction> undoStack = new Stack<>();
+    private Stack<iAction> redoStack = new Stack<>();
 
     public static synchronized CmdManager getIO() {
         if (ourInstance == null) {
@@ -21,38 +21,38 @@ public class CmdManager {
         return ourInstance;
     }
 
-    public void addUndoStack(BaseCmdClass cmdObj) {
+    public void addUndoStack(iAction cmdObj) {
         undoStack.push(cmdObj);// add to top of stack
     }
 
-    public void addRedoStack(BaseCmdClass cmdObj) {
+    public void addRedoStack(iAction cmdObj) {
         redoStack.push(cmdObj);
     }
 
-    public void setUndoStack() { // Undo
+    public void undo() { // Undo
         if (!undoStack.empty()) {
-            BaseCmdClass cmdObj = undoStack.pop();
+            iAction cmdObj = undoStack.pop();
             addRedoStack(cmdObj);
             cmdObj.undo();
         }
     }
 
-    public void setRedoStack() { // Redo
+    public void redo() { // Redo
         if (!redoStack.empty()) {
-            BaseCmdClass cmdObj = redoStack.pop();
+            iAction cmdObj = redoStack.pop();
             addUndoStack(cmdObj);
             cmdObj.redo();
         }
     }
 
-    public BaseCmdClass peekUndoStack() {
+    public iAction peekUndoStack() {
         if (!undoStack.empty()) {
             return undoStack.peek(); //without removing it from the stack.
         }
         return null;
     }
 
-    public BaseCmdClass peekRedoStack() {
+    public iAction peekRedoStack() {
         if (!redoStack.empty()) {
             return redoStack.peek();
         }

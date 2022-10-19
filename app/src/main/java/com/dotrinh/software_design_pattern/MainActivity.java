@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dotrinh.software_design_pattern.behavioral_patterns.command.CmdManager;
+import com.dotrinh.software_design_pattern.behavioral_patterns.command.MyComponent;
 import com.dotrinh.software_design_pattern.behavioral_patterns.command.MyField;
 import com.dotrinh.software_design_pattern.behavioral_patterns.command.MyText;
 import com.dotrinh.software_design_pattern.creational_patterns.Builder_User_2;
@@ -34,12 +35,15 @@ public class MainActivity extends AppCompatActivity {
         cm.addUndoStack(new MyText("test 2"));
         cm.addUndoStack(new MyField("Field 1"));
         cm.addUndoStack(new MyField("Field 2"));
-        LogI(cm.countUndo() + "");
-        cm.setUndoStack(); //undo button
+        LogI("count stack: " + cm.countUndo());
+        //test UNDO button
+        cm.undo();
         if (cm.peekUndoStack() != null) {
-            LogI("peek: " + cm.peekUndoStack().name);
+            MyComponent myComponent = (MyComponent) cm.peekUndoStack();
+            LogI("getName: " + myComponent.getName());
         }
-        cm.setRedoStack(); //redo button
+        //test REDO button
+        cm.redo();
 
         //2. Builder Pattern
         Builder_User_2 myBuilderUser = new Builder_User_2.UserBuilder("do", "trinh").address("Vietnam").phone("0123456789").build();
