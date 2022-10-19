@@ -24,11 +24,12 @@ public class CmdManager {
     }
 
     public void addUndoStack(iAction cmdObj) {
-        LogI("add to stack: " + ((MyComponent) cmdObj).getName());
+        LogI("add to UNDO stack: " + cmdObj.print());
         undoStack.push(cmdObj);// add to top of stack
     }
 
     public void addRedoStack(iAction cmdObj) {
+        LogI("add to REDO stack: " + cmdObj.print());
         redoStack.push(cmdObj);
     }
 
@@ -55,9 +56,10 @@ public class CmdManager {
         return null;
     }
 
-    public void print() {
+    public void printUndoStack() {
+        LogI("stack: ");
         for (iAction ia : undoStack) {
-            LogI("name: " + ((MyComponent) ia).getName());
+            LogI("       " + ia.print());
         }
     }
 

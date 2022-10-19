@@ -12,4 +12,5 @@ package com.dotrinh.software_design_pattern.behavioral_patterns.command;
 public interface iAction {
     void undo();
     void redo();
+    String print();
 }

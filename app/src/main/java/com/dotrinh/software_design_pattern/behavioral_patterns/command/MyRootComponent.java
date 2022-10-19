@@ -7,11 +7,11 @@ package com.dotrinh.software_design_pattern.behavioral_patterns.command;
 
 import static com.dotrinh.software_design_pattern.tools.LogUtil.LogI;
 
-public class MyComponent implements iAction {
+public class MyRootComponent implements iAction {
 
     private String name;
 
-    public MyComponent(String str) {
+    public MyRootComponent(String str) {
         name = str;
     }
 
@@ -31,5 +31,10 @@ public class MyComponent implements iAction {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String print() {
+        return "name: " + name;
     }
 }
