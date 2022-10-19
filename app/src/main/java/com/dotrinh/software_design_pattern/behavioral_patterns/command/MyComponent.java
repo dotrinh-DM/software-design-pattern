@@ -17,12 +17,12 @@ public class MyComponent implements iAction {
 
     @Override
     public void undo() {
-        LogI("Đã undo");
+        LogI("Đã undo " + name);
     }
 
     @Override
     public void redo() {
-        LogI("Đã redo");
+        LogI("Đã redo " + name);
     }
 
     public String getName() {

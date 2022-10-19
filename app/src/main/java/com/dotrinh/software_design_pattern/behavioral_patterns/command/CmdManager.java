@@ -6,6 +6,8 @@
 package com.dotrinh.software_design_pattern.behavioral_patterns.command;
 
 
+import static com.dotrinh.software_design_pattern.tools.LogUtil.LogI;
+
 import java.util.Stack;
 
 public class CmdManager {
@@ -22,6 +24,7 @@ public class CmdManager {
     }
 
     public void addUndoStack(iAction cmdObj) {
+        LogI("add to stack: " + ((MyComponent) cmdObj).getName());
         undoStack.push(cmdObj);// add to top of stack
     }
 
@@ -33,7 +36,7 @@ public class CmdManager {
         if (!undoStack.empty()) {
             iAction cmdObj = undoStack.pop();
             addRedoStack(cmdObj);
-            cmdObj.undo();
+            cmdObj.undo(); //call subscribers
         }
     }
 
@@ -50,6 +53,12 @@ public class CmdManager {
             return undoStack.peek(); //without removing it from the stack.
         }
         return null;
+    }
+
+    public void print() {
+        for (iAction ia : undoStack) {
+            LogI("name: " + ((MyComponent) ia).getName());
+        }
     }
 
     public iAction peekRedoStack() {

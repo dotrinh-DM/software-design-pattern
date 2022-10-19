@@ -29,28 +29,27 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //3. Command Pattern
+        //---------------------------------- 3. Command Pattern
         CmdManager cm = CmdManager.getIO();
-        cm.addUndoStack(new MyText("test 1"));
-        cm.addUndoStack(new MyText("test 2"));
-        cm.addUndoStack(new MyField("Field 1"));
-        cm.addUndoStack(new MyField("Field 2"));
-        LogI("count stack: " + cm.countUndo());
+        cm.addUndoStack(new MyText("MyText 1"));
+        cm.addUndoStack(new MyText("MyText 2"));
+        cm.addUndoStack(new MyField("MyField 1"));
+        cm.addUndoStack(new MyField("MyField 2"));
         //test UNDO button
+        LogI("-------------------------------");
         cm.undo();
-        if (cm.peekUndoStack() != null) {
-            MyComponent myComponent = (MyComponent) cm.peekUndoStack();
-            LogI("getName: " + myComponent.getName());
-        }
+        cm.print();
         //test REDO button
+        LogI("-------------------------------");
         cm.redo();
+        cm.print();
 
-        //2. Builder Pattern
+        //---------------------------------- 2. Builder Pattern
         Builder_User_2 myBuilderUser = new Builder_User_2.UserBuilder("do", "trinh").address("Vietnam").phone("0123456789").build();
         // LogI(myBuilderUser.toString());
         // LogI(myBuilderUser.getAddress());
 
-        //1. Singleton Pattern
+        //---------------------------------- 1. Singleton Pattern
         Singleton_Toast_1.getInstance().showLongToast(this, "Hello");
     }
 }
