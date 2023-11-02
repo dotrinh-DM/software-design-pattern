@@ -8,6 +8,8 @@ package com.dotrinh.software_design_pattern.behavioral_patterns.command;
 /**
  * Dung interface de mo rong tot hon
  * có thể dùng cách khác là abstract class nhung kho mo rong
+ *
+ * interface co the co property nhung no luon la final
  */
 public interface iAction {
     void undo();
